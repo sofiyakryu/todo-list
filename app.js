@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb://localhost:27017/todolistDB", {
+mongoose.connect('mongodb+srv://admin-sofiya:Test12345@cluster0.svn68.mongodb.net/todolistDB', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -63,9 +63,8 @@ app.get("/", function(req, res) {
       });
       res.redirect("/");
     } else {
-      const day = date.getDate();
       res.render("list", {
-        listTitle: day,
+        listTitle: "Today",
         newListItems: foundItems
       });
     }
@@ -102,9 +101,7 @@ app.post("/", function(req, res) {
     name: itemName
   });
 
-  const day = date.getDate();
-
-  if (listName === day) {
+  if (listName === "Today") {
     item.save();
     res.redirect("/");
   } else {
@@ -131,9 +128,8 @@ app.post("/", function(req, res) {
 app.post("/delete", function (req, res) {
   const checkedItemId = req.body.checkbox;
   const listName = req.body.listName;
-  const day = date.getDate();
 
-  if (listName === day) {
+  if (listName === "Today") {
     Item.findByIdAndRemove(checkedItemId, function(err) {
       if (!err) {
         console.log("Successfully deleted checked item.");
