@@ -6,10 +6,6 @@ const date = require(__dirname + "/date.js");
 
 const app = express();
 
-// const items = ["Buy food", "Cook food", "Eat food"];
-// const workItems = [];
-// const shoppingItems = [];
-
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({
@@ -145,20 +141,6 @@ app.post("/delete", function (req, res) {
   }
 
 });
-
-// app.get("/work", function(req, res) {
-//   res.render("list", {
-//     listTitle: "Work List",
-//     newListItems: workItems
-//   });
-// });
-//
-// app.get("/shopping", function(req, res) {
-//   res.render("list", {
-//     listTitle: "Shopping List",
-//     newListItems: shoppingItems
-//   });
-// });
 
 app.get("/about", function(req, res) {
   res.render("about");
